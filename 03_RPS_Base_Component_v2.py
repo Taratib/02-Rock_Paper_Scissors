@@ -1,22 +1,59 @@
-import random
-
-# Functions go here 
+# Functions used to check input is valid
 
 
-# main routine goes here
+def check_rounds():
+    while True:
+        response = input("How many rounds: ")
 
-# Lists of valid responses
-yes_no_list = ["yes", "no"]
-rps_list = ["rock", "papers", "scissors", "xxx"]
+        round_error = "Please type either <enter> or an integer that is more than 0"
 
-# Ask user if they have played before.
-# If 'yes', show instructions
+        if response != "":
+            try:
+                response = int(response)
+
+                if response < 1:
+                    print(round_error)
+                    continue
+            
+            except ValueError:
+                print(round_error)
+                continue
+    
+        return response
 
 
-# ask user for # of rounds then loop...
+# Main routine goes here
+
+rounds_played = 0
+choose_instructions = "Please choose rock (r), paper (p) or scissorrs (s)"
 
 
-# Ask user if they want to see their gamw history.
-# If 'yes' show game history
+# Ask user for # of rounds, <enter> for infinite mode
+rounds = check_rounds()
 
-# Show game statuations
+end_game = "no"
+while end_game == "no":
+
+    # Rounds Heading
+    print()
+    if rounds == "":
+        heading = "Continuous Mode: Round {}". format(rounds_played)
+        print(heading)
+        choose = input(" {} or 'xxx' to end: ".format(choose_instructions))
+        if choose == "xxx":
+            break
+    
+    else:
+        heading = "Round {} of {}".format(rounds_played + 1, rounds)
+        print(heading)
+        choose = input(choose_instructions)
+        if rounds_played == rounds - 1:
+            end_game = "yes"
+
+    # rest of loop / game
+    print("You chose {}".format(choose))
+
+    rounds_played += 1
+
+print("Thank you for playing")
+

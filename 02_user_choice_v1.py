@@ -31,7 +31,7 @@ user_choice = ""
 while user_choice != "xxx":
 
     # Ask user for choice and check it's valis
-    user_choice = choice_checker("Choose rock / paper / scissors (r/p/s)")
+    user_choice = choice_checker("Choose rock / paper / scissors (r/p/s):")
 
 
     # print out choice for comparisons purposes

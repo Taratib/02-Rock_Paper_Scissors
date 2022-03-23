@@ -9,5 +9,48 @@ for item in rps_list:
         user_index += 1
 
         # Compare options....
+        print()
+        if user_choice == "rock" and comp_choice == "rock":
+            results = "It's a Tie"
+        elif user_choice == "paper" and comp_choice == "paper":
+            results = "It's a Tie"
+        elif user_choice == "scissors" and comp_choice == "scissors":
+            results = "It's a Tie"
+        elif user_choice == "rock" and comp_choice == "scissors":
+            results = "You Won!"
+        elif user_choice == "paper" and comp_choice == "rock":
+            results = "You Won!"
+        elif user_choice == "scissors" and comp_choice == "paper":
+            results = "You Won!"
+        elif user_choice == "scissors" and comp_choice == "rock":
+            results = "You lost (better luck next time)"
+        elif user_choice == "rock" and comp_choice == "paper":
+            results = "You lost (better luck next time)"
+        elif user_choice == "paper" and comp_choice == "scissors":
+            results = "You lost (better luck next time)"
+        
+        print("You chose {}, the computer chose {}. \nResult: {}".format(user_choice, comp_choice, results))
 
-        print("You chose {}, the computer chose {}. \nResult: {}".format(user_choice, comp_choice, result))
+    comp_index += 1
+    print()
+    if user_choice == "rock" and comp_choice == "rock":
+            results = "It's a Tie"
+    elif user_choice == "paper" and comp_choice == "paper":
+        results = "It's a Tie"
+    elif user_choice == "scissors" and comp_choice == "scissors":
+        results = "It's a Tie"
+    elif user_choice == "rock" and comp_choice == "scissors":
+        results = "You Won!"
+    elif user_choice == "paper" and comp_choice == "rock":
+        results = "You Won!"
+    elif user_choice == "scissors" and comp_choice == "paper":
+        results = "You Won!"
+    elif user_choice == "scissors" and comp_choice == "rock":
+        results = "You lost (better luck next time)"
+    elif user_choice == "rock" and comp_choice == "paper":
+        results = "You lost (better luck next time)"
+    elif user_choice == "paper" and comp_choice == "scissors":
+        results = "You lost (better luck next time)"
+    
+            
+    
