@@ -1,6 +1,43 @@
 import random
 
-# Functions go here 
+# Functions go here
+
+def yes_no(question):
+    valid = False
+    while not valid:
+        response = input(question).lower()
+
+        if response == "yes" or response == "y":
+            response = "yes"
+            return response
+
+        elif response == "no" or response == "n":
+            response = "no"
+            return response
+
+        else:
+            print("please answer yes / no")
+            print()
+
+def instructions():
+    print()
+    print("**** How to Play ****")
+    print()
+    print('''Choose either a number of rounds or press <enter> for
+    infinite mode.
+
+    Then for each round, choose from rock
+    / paper / scissors (or xxx to quit)
+    tou can type r / p / s / x if you
+    don't want to type the entire word.
+
+    The rules are...
+    - Rock beat scissors
+    - Scissors beats paper
+    - Paper beats rock''')
+
+    return""
+
 def check_rounds():
     while True:
         response = input("How many rounds: ")
@@ -10,7 +47,7 @@ def check_rounds():
         # If infinite mode not chosen, check response
         # is an integer that is more than 0
         if response != "":
-            try: 
+            try:
                 response = int(response)
 
                 # If response is too low, go back to
@@ -21,11 +58,11 @@ def check_rounds():
 
             # if response is not an integer go back to
             # start of loop
-            
+
             except ValueError:
                 print(round_error)
                 continue
-    
+
         return response
 
 def choice_checker(question, valid_list, error):
@@ -36,7 +73,7 @@ def choice_checker(question, valid_list, error):
         # Ask user for choice (and put choice in lowercase)
         response = input(question).lower()
 
-        # iterates through list and if reponse is an item 
+        # iterates through list and if reponse is an item
         # in the list (or the first letter of an item), the
         # full item name is returned
 
@@ -46,9 +83,17 @@ def choice_checker(question, valid_list, error):
 
         # output error if item not in list
         print(error)
-        print() 
+        print()
 
-# Main routine goes here
+
+# Main Routine goes here
+played_before = yes_no("Have you played the game before? ")
+print()
+if played_before == "no":
+    instructions()
+print()
+print("*** Have Fun ***")
+print()
 
 # Lists of valid responses
 yes_no_list = ["yes", "no"]
@@ -57,6 +102,7 @@ rps_list = ["rock", "papers", "scissors", "xxx" ]
 # Ask user if they have played before
 # If 'yes', show instructions
 
+game_summary = []
 
 # ask user for # of rounds then loop...
 rounds_played = 0
@@ -90,8 +136,11 @@ while end_game == "no":
     user_choice = choice_checker(choose_instruction, rps_list, choose_error)
 
     # End game if exit code is typed
-    if user_choice == "xxx":
+    if user_choice == "xxx" and rounds_played > 1:
         break
+    elif user_choice == "xxx":
+        print("you need to play at least one round")
+        continue
     # get computer choice
     comp_choice = random.choice(rps_list[:-1])
 
@@ -114,7 +163,10 @@ while end_game == "no":
     else:
         feedback = "{} vs {} - you {}".format(user_choice, comp_choice, result)
 
+    outcome = "{}: {}".format(rounds_played + 1, feedback)
+
     # Outputs results...
+    game_summary.append(outcome)
     print(feedback)
 
     rounds_played += 1 
@@ -130,6 +182,18 @@ while end_game == "no":
 # Show game statistics
 # Quick Calculations (stats)
 rounds_won = rounds_played - rounds_lost - rounds_drawn
+
+# **** Calculate Game Stats ******
+percent_win = rounds_won / rounds_played * 100
+percent_lose = rounds_lost / rounds_played * 100
+percent_tie = rounds_drawn / rounds_played * 100
+
+print()
+print("**** Game History *******")
+for game in game_summary:
+    print(game)
+
+print()
 
 # End of Game Statements
 print()
